@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 '''
 Usage:
-    synel enter --user=<employee ID> --password=<password>
-    synel exit --user=<employee ID> --password=<password>
+    synel enter --user=<employee ID> --password=<password> --company=<company ID>
+    synel exit --user=<employee ID> --password=<password> --company=<company ID>
+Options:
+    --password <PASSWORD> User defined password
+    --user <USER> Employee ID, usually a number
+    --company <COMPANY> Company ID, usually a number
 '''
+
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time
@@ -20,7 +25,7 @@ def is_alert_present(wd):
     except:
         return False
 
-def push_record(username, password, company="53782071"):
+def push_record(username, password, company):
     try:
         wd.get("https://harmony.synel.co.il/eharmonynew")
         wd.implicitly_wait(3)
@@ -49,3 +54,6 @@ def push_record(username, password, company="53782071"):
         wd.quit()
         if not success:
             raise Exception("Test failed.")
+        
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='Synel recorder')
