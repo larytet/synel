@@ -41,7 +41,7 @@ def push_record(wd, username, password, company, is_enter):
     wd.find_element_by_name("compInput").clear()
     wd.find_element_by_name("compInput").send_keys(company)
     wd.find_element_by_name("loginBtn").click()
-    wd.implicitly_wait(5)
+    wd.implicitly_wait(30)
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").click()
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").clear()
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").send_keys(username)
@@ -49,7 +49,7 @@ def push_record(wd, username, password, company, is_enter):
     wd.find_element_by_name("password").clear()
     wd.find_element_by_name("password").send_keys(password)
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']//button[.='LOGIN']").click()
-    wd.implicitly_wait(5)
+    wd.implicitly_wait(30)
     
     if (is_enter):
         wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
@@ -60,6 +60,9 @@ def push_record(wd, username, password, company, is_enter):
         
     wd.implicitly_wait(3)
     wd.find_element_by_id("btnOk").click()
+    wd.implicitly_wait(3)
+    #wd.find_element_by_xpath("//form[@id='loginHarmonyDB']//button[.='LOGIN']").click()
+    wd.find_element_by_link_text("(Logout)").click()
     wd.implicitly_wait(3)
         
 if __name__ == '__main__':
