@@ -12,11 +12,18 @@ Options:
     --company=COMPANY Company ID, usually a number
 '''
 
-from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.common.action_chains import ActionChains
+try:
+    from selenium.webdriver.firefox.webdriver import WebDriver
+    from selenium.webdriver.common.action_chains import ActionChains
+except:
+    print "Try 'pip install -U selenium'. Do not forget to install firefox"    
 import time
 import logging
-from docopt import docopt
+
+try:
+    from docopt import docopt
+except:
+    print "Try 'pip install -U docopt'"    
 
 success=True
 
