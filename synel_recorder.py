@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 '''
 Usage:
-    synel_recorder enter --user=employeeID --password=PASSWORD --company=companyID>
-    synel_recorder exit --user=employeeID --password=PASSWORD --company=companyID> 
+    synel_recorder enter --user=employeeID --password=PASSWORD --company=companyID
+    synel_recorder exit --user=employeeID --password=PASSWORD --company=companyID 
     
     
 Options:
