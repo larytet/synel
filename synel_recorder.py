@@ -54,11 +54,12 @@ def push_record(wd, username, password, company, is_enter):
     if (is_enter):
         wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
         ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-        wd.find_element_by_id("btnOk").click()
     else:
         wd.find_element_by_xpath("//div[@class='controls']/input[2]").click()
         ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-        wd.find_element_by_id("btnOk").click()
+        
+    wd.implicitly_wait(3)
+    wd.find_element_by_id("btnOk").click()
     wd.implicitly_wait(3)
         
 if __name__ == '__main__':
