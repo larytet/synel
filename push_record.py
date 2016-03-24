@@ -20,31 +20,32 @@ def is_alert_present(wd):
     except:
         return False
 
-try:
-    wd.get("https://harmony.synel.co.il/eharmonynew")
-    wd.implicitly_wait(3)
-    wd.find_element_by_name("compInput").click()
-    wd.find_element_by_name("compInput").clear()
-    wd.find_element_by_name("compInput").send_keys("53782071")
-    wd.find_element_by_name("loginBtn").click()
-    wd.implicitly_wait(3)
-    wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").click()
-    wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").clear()
-    wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").send_keys("20")
-    wd.find_element_by_name("password").click()
-    wd.find_element_by_name("password").clear()
-    wd.find_element_by_name("password").send_keys("arkadym")
-    wd.implicitly_wait(3)
-    
-    wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
-    ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-    wd.find_element_by_id("btnOk").click()
-    wd.implicitly_wait(3)
-    wd.find_element_by_xpath("//div[@class='controls']/input[2]").click()
-    ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-    wd.find_element_by_id("btnOk").click()
-    
-finally:
-    wd.quit()
-    if not success:
-        raise Exception("Test failed.")
+def push_record(username, password, company="53782071"):
+    try:
+        wd.get("https://harmony.synel.co.il/eharmonynew")
+        wd.implicitly_wait(3)
+        wd.find_element_by_name("compInput").click()
+        wd.find_element_by_name("compInput").clear()
+        wd.find_element_by_name("compInput").send_keys(company)
+        wd.find_element_by_name("loginBtn").click()
+        wd.implicitly_wait(3)
+        wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").click()
+        wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").clear()
+        wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").send_keys(username)
+        wd.find_element_by_name("password").click()
+        wd.find_element_by_name("password").clear()
+        wd.find_element_by_name("password").send_keys(password)
+        wd.implicitly_wait(3)
+        
+        wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
+        ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
+        wd.find_element_by_id("btnOk").click()
+        wd.implicitly_wait(3)
+        wd.find_element_by_xpath("//div[@class='controls']/input[2]").click()
+        ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
+        wd.find_element_by_id("btnOk").click()
+        
+    finally:
+        wd.quit()
+        if not success:
+            raise Exception("Test failed.")
