@@ -18,6 +18,7 @@ import time
 import logging
 from docopt import docopt
 
+success=True
 
 def is_alert_present(wd):
     try:
@@ -61,9 +62,9 @@ if __name__ == '__main__':
         is_enter = True;
     company = arguments["--company"]
     password = arguments["--password"]
-    user = arguments["--user"]
+    username = arguments["--user"]
     
-    logger.info("Record '{0}' for user '{1}, company '{2}'".format({True:"ENTER", False:"EXIT"}[is_enter], user, company))
+    logger.info("Record '{0}' for user '{1}', company '{2}'".format({True:"ENTER", False:"EXIT"}[is_enter], username, company))
 
     wd = WebDriver()
     wd.implicitly_wait(3)
