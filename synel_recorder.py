@@ -41,6 +41,7 @@ def push_record(wd, username, password, company, is_enter):
     wd.find_element_by_name("password").click()
     wd.find_element_by_name("password").clear()
     wd.find_element_by_name("password").send_keys(password)
+    wd.find_element_by_xpath("//form[@id='loginHarmonyDB']//button[.='LOGIN']").click()
     wd.implicitly_wait(5)
     
     if (is_enter):
