@@ -27,29 +27,31 @@ def is_alert_present(wd):
     except:
         return False
 
-def push_record(wd, username, password, company):
+def push_record(wd, username, password, company, is_enter):
     wd.get("https://harmony.synel.co.il/eharmonynew")
-    wd.implicitly_wait(3)
+    wd.implicitly_wait(30)
     wd.find_element_by_name("compInput").click()
     wd.find_element_by_name("compInput").clear()
     wd.find_element_by_name("compInput").send_keys(company)
     wd.find_element_by_name("loginBtn").click()
-    wd.implicitly_wait(3)
+    wd.implicitly_wait(5)
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").click()
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").clear()
     wd.find_element_by_xpath("//form[@id='loginHarmonyDB']/div[6]/input").send_keys(username)
     wd.find_element_by_name("password").click()
     wd.find_element_by_name("password").clear()
     wd.find_element_by_name("password").send_keys(password)
-    wd.implicitly_wait(3)
+    wd.implicitly_wait(5)
     
-    wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
-    ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-    wd.find_element_by_id("btnOk").click()
+    if (is_enter):
+        wd.find_element_by_xpath("//div[@class='controls']/input[1]").click()
+        ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
+        wd.find_element_by_id("btnOk").click()
+    else:
+        wd.find_element_by_xpath("//div[@class='controls']/input[2]").click()
+        ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
+        wd.find_element_by_id("btnOk").click()
     wd.implicitly_wait(3)
-    wd.find_element_by_xpath("//div[@class='controls']/input[2]").click()
-    ActionChains(wd).double_click(wd.find_element_by_id("overlayReportingControlDiv")).perform()
-    wd.find_element_by_id("btnOk").click()
         
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='Synel recorder')
@@ -70,7 +72,7 @@ if __name__ == '__main__':
     wd.implicitly_wait(3)
     
     try:
-        push_record(wd, username, password, company)
+        push_record(wd, username, password, company, is_enter)
     finally:
         wd.quit()
         if not success:
